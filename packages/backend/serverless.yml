@@ -1,0 +1,50 @@
+service: bondy-desafio-fullstack
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-esbuild
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  stage: ${opt:stage}
+  lambdaHashingVersion: "20201221"
+  environment:
+    NODE_ENV: ${opt:stage}
+  timeout: 60
+  memorySize: 512
+  tracing:
+    lambda: true
+
+package:
+  excludeDevDependencies: false
+  individually: true
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  prune:
+    automatic: true
+    number: 3
+  lambdaInsights:
+    defaultLambdaInsights: true
+  esbuild:
+    external:
+      - bcrypt
+
+
+functions:
+  graphql:
+    handler: handler.graphqlHandler
+    reservedConcurrency: 10
+    events:
+      - http:
+          path: /desafio
+          method: get
+          cors: true
+      - http:
+          path: /desafio
+          method: post
+          cors: true
+          
