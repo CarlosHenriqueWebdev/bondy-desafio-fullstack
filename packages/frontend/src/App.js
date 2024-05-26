@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ApolloProvider, useMutation, gql } from "@apollo/client";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { useNavigate, BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useNavigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Welcome from "./Welcome";
 
@@ -30,7 +30,7 @@ const LoginForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const [login, { data, error }] = useMutation(LOGIN_MUTATION, {
+  const [login] = useMutation(LOGIN_MUTATION, {
     onError: (error) => {
       setErrorMessage(error.message);
     },
