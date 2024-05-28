@@ -2,7 +2,7 @@
 
 ## GraphQL Playground Queries
 
-1. **Login**: Para fazer login e obter um token, você pode usar a seguinte mutação. Você deve substituir o email e a senha pelos valores corretos que já estão na Query. Use um email e senha inválidos para ver os erros.
+**Login**: Para fazer login e obter um token, você pode usar a seguinte mutação. Você deve substituir o email e a senha pelos valores corretos que já estão na Query. Use um email e senha inválidos para ver os erros.
 
 ```
 mutation {
@@ -16,14 +16,14 @@ mutation {
 }
 ```
 
-2. **Locked Query**: Para testar uma query que só pode ser acessada por usuários logados, você pode usar a seguinte query. Certifique-se de incluir o token recebido no header, com os valores de: Authorization | Bearer [seu-token].
+**Locked Query**: Para testar uma query que só pode ser acessada por usuários logados, você pode usar a seguinte query. Certifique-se de incluir o token recebido no header, com os valores de: Authorization | Bearer [seu-token].
 ```
 query {
   isAuthorized
 }
 ```
 
-3. **Logout**: Para fazer logout e invalidar o token atual, você pode usar a seguinte mutação.
+**Logout**: Para fazer logout e invalidar o token atual, você pode usar a seguinte mutação.
 
 ```
 mutation {

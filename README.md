@@ -6,11 +6,11 @@
 
 ### Passos para Executar o Projeto
 
-1. Clone ou baixe repositório para sua máquina local
+Clone ou baixe repositório para sua máquina local
 
-2. Navegue até o diretório do projeto
+Navegue até o diretório do projeto
 
-3. Instale as dependências do frontend e do backend:
+Instale as dependências do frontend e do backend:
 
 ```
 cd ./packages/frontend
@@ -21,7 +21,7 @@ cd ../backend
 npm install
 ```
 
-4. Inicie o servidor backend **primeiro**:
+Inicie o servidor backend **primeiro**:
 
 Para Windows:
 
@@ -35,21 +35,21 @@ Caso não esteja no Windows, utilize [ou troque o script de start no Package.jso
 NODE_ENV=local serverless offline --stage local
 ```
 
-5. Em outra janela do terminal, inicie o frontend:
+Em outra janela do terminal, inicie o frontend:
 
 ```
 cd frontend
 npm start
 ```
 
-6. Abra seu navegador e acesse http://localhost:3000/local/desafio [Apollo Server] | http://localhost:3001 [Frontend] para visualizar o aplicativo.
+Abra seu navegador e acesse http://localhost:3000/local/desafio [Apollo Server] | http://localhost:3001 [Frontend] para visualizar o aplicativo.
 
 
 # API Documentation
 
 ## GraphQL Playground Queries
 
-1. **Login**: Para fazer login e obter um token, você pode usar a seguinte mutação. Você deve substituir o email e a senha pelos valores corretos que já estão na Query. Use um email e senha inválidos para ver os erros.
+**Login**: Para fazer login e obter um token, você pode usar a seguinte mutação. Você deve substituir o email e a senha pelos valores corretos que já estão na Query. Use um email e senha inválidos para ver os erros.
 
 ```
 mutation {
@@ -63,14 +63,14 @@ mutation {
 }
 ```
 
-2. **Locked Query**: Para testar uma query que só pode ser acessada por usuários logados, você pode usar a seguinte query. Certifique-se de incluir o token recebido no header, com os valores de: Authorization | Bearer [seu-token].
+**Locked Query**: Para testar uma query que só pode ser acessada por usuários logados, você pode usar a seguinte query. Certifique-se de incluir o token recebido no header, com os valores de: Authorization | Bearer [seu-token].
 ```
 query {
   isAuthorized
 }
 ```
 
-3. **Logout**: Para fazer logout e invalidar o token atual, você pode usar a seguinte mutação.
+**Logout**: Para fazer logout e invalidar o token atual, você pode usar a seguinte mutação.
 
 ```
 mutation {
