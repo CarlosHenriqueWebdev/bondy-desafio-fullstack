@@ -9,7 +9,7 @@
     "eslint": "eslint ./src --ext .ts,.js",
     "eslint:fix": "npm run prettier-format && eslint ./src --ext .ts,.tsx --quiet --fix",
     "prettier-format": "prettier --write .",
-    "test": "jest --verbose --watch",
+    "test": "jest --verbose",
     "test:coverage": "jest --config=jest.config.coverage.ts"
   },
   "devDependencies": {

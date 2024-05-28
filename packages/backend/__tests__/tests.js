@@ -2,7 +2,7 @@
 const axios = require('axios')
 
 describe('Apollo Server', () => {
-  const endpoint = process.env.ENDPOINT
+  const endpoint = "http://localhost:3000/local/desafio"
 
   it('should respond to a simple unathorized query', async () => {
     const query = {

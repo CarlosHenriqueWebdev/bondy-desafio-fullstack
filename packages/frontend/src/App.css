@@ -1,25 +1,29 @@
 :root {
-  --background-color: #b4b4b4;
-  --font-family: "Open Sans Condensed", sans-serif;
-  --fieldset-background-color: #d5d5d5;
-  --legend-background-color: #364351;
+  --background-color: #f3f3f3;
+  --font-family: sans-serif;
+  --fieldset-background-color: #e8e6f7;
+  --legend-background-color: #000000;
   --legend-color: rgb(211, 211, 211);
   --form-border-color: #2f2f2f;
   --label-color: rgb(73, 73, 73);
   --input-background-color: #f7f7f7;
-  --submit-button-background-color: #5c8ca7;
+  --submit-button-background-color: #342fea;
   --submit-button-border-color: #3498db;
   --submit-button-hover-background-color: #2980b9;
   --error-list-background-color: #c34343;
   --error-list-border-color: #870d0d;
-  --error-color: rgb(83, 49, 49);
-  --welcome-title-background-color: #364351;
-  --welcome-title-color: rgb(211, 211, 211);
+  --error-color: #dc3543;
+  --welcome-title-background-color: #000000;
+  --welcome-title-color: #e8e6f7;
 }
 
 body {
   background: var(--background-color);
   font-family: var(--font-family);
+}
+
+p {
+  margin: 0;
 }
 
 #login-form {
@@ -32,29 +36,31 @@ body {
 #login-form .fieldset {
   background-color: var(--fieldset-background-color);
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: 18px;
+  border: 1px solid var(--form-border-color);
 }
 
-legend {
+.cool-heading {
   background: var(--legend-background-color);
   padding: 30px 20px;
   width: 100%;
-  border-radius: 3px 3px 0 0;
   color: var(--legend-color);
   font-weight: bold;
   font-size: 2em;
   text-transform: uppercase;
 }
 
+.cool-heading img {
+  width: 60px;
+}
+
 form {
-  border: 1px solid var(--form-border-color);
   margin: 0 auto;
   display: grid;
   gap: 12px;
   width: 100%;
   padding: 30px 20px;
   box-sizing: border-box;
-  border-radius: 0 0 3px 3px;
 }
 
 label {
@@ -81,7 +87,7 @@ label {
 
 input {
   padding: 15px 20px;
-  border-radius: 1px;
+  border-radius: 18px;
   margin: 5px auto;
   background-color: var(--input-background-color);
   border: 1px solid silver;
@@ -113,6 +119,7 @@ input:focus-visible {
 
 #login-form input[type="submit"],
 button {
+  border-radius: 18px;
   font-family: var(--font-family);
   text-transform: uppercase;
   outline: none;
@@ -125,7 +132,6 @@ button {
   padding: 10px;
   color: white;
   border: 1px solid var(--submit-button-border-color);
-  border-radius: 3px;
   font-size: 1.5em;
   font-weight: bold;
   margin-top: 5px;
@@ -147,7 +153,6 @@ button {
   padding: 5px 11px;
   margin: 0;
   list-style: none;
-  border-radius: 0 0 3px 3px;
   margin-top: -5px;
   margin-bottom: 5px;
   color: white;
@@ -176,11 +181,6 @@ button {
   border: 0;
 }
 
-.error {
-  color: var(--error-color);
-  font-weight: bold;
-}
-
 h1 {
   text-align: center;
   width: 100%;
@@ -202,7 +202,7 @@ button {
   background: var(--welcome-title-background-color);
   padding: 30px 20px;
   width: fit-content;
-  border-radius: 3px 3px 0 0;
+  border-radius: 18px;
   color: var(--welcome-title-color);
   font-weight: bold;
   font-size: 2em;
@@ -212,4 +212,42 @@ button {
 
 .welcome-button {
   width: fit-content;
+}
+
+.input-inner-group {
+  display: grid;
+  gap: 8px;
+}
+
+.error-message {
+  font-size: 14px;
+  color: var(--error-color);
+  font-weight: bold;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.input-error {
+  animation: shake 0.3s ease;
+}
+
+.input-error,
+.input-error:active {
+  border-color: var(--error-color) !important;
 }

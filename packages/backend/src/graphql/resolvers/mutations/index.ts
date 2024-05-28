@@ -6,14 +6,23 @@ import { Blacklist } from 'src/models/Blacklist'
 
 export default {
   login: async (_parent, args, _context) => {
+    const errors = [];
+
     // Validate email is not empty
     if (args.email.trim() === '') {
-      throw new Error('Email cannot be empty')
+      errors.push('Email cannot be empty');
     }
 
     // Validate password is not empty
     if (args.password.trim() === '') {
-      throw new Error('Password cannot be empty')
+      errors.push('Password cannot be empty');
+    }
+
+    // If there are errors, throw a combined error message
+    if (errors.length > 0) {
+      const error = new Error(errors.join(', '));
+      error.code = 'BAD_USER_INPUT';
+      throw error;
     }
 
     // Validate email format

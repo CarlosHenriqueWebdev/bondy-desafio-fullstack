@@ -29,7 +29,7 @@ const LOGIN_MUTATION = gql`
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errors, setErrors] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
   // useEffect to redirect if user is already logged in
@@ -45,7 +45,26 @@ const LoginForm = () => {
 
   const [login] = useMutation(LOGIN_MUTATION, {
     onError: (error) => {
-      setErrorMessage(error.message);
+      const errorMessages = error.message.split(', ');
+      const newErrors = { email: "", password: "", general: "" };
+
+      errorMessages.forEach((errorMessage) => {
+        if (errorMessage.includes("Email")) {
+          newErrors.email = errorMessage;
+        } else if (errorMessage.includes("Email")) {
+          newErrors.email = errorMessage;
+        } else if (errorMessage.includes("found")) {
+          newErrors.email = errorMessage;
+        } else if (errorMessage.includes("Password")) {
+          newErrors.password = errorMessage;
+        } else if (errorMessage.includes("Invalid")) {
+          newErrors.password = errorMessage;
+        } else {
+          newErrors.general = errorMessage;
+        }
+      });
+
+      setErrors(newErrors);
     },
   });
 
@@ -53,7 +72,7 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const { data } = await login({ variables: { email, password } });
-      console.log("Login successful!", data.login);
+
       localStorage.setItem('token', data.login.token);
       navigate('/welcome');
     } catch (error) {
@@ -64,10 +83,14 @@ const LoginForm = () => {
   return (
     <div id="login-form">
       <div className="fieldset">
-        <legend className="cool-heading">Login Page</legend>
+        <div className="cool-heading">
+          <img src="logo.png" alt="Logo" />
+        </div>
         <form onSubmit={handleSubmit}>
-          <div className="row">
+          <div className={`row ${errors.email ? "error" : ""}`}>
             <label htmlFor="email">E-mail</label>
+            <div className="input-inner-group">
+
             <input
               id="email"
               type="email"
@@ -75,10 +98,14 @@ const LoginForm = () => {
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className={errors.email ? "input-error" : ""}
             />
+            {errors.email && <p className="error-message">{errors.email}</p>}
           </div>
-          <div className="row">
+          </div>
+          <div className={`row ${errors.password ? "error" : ""}`}>
             <label htmlFor="password">Password</label>
+              <div className="input-inner-group">
             <input
               id="password"
               type="password"
@@ -86,10 +113,16 @@ const LoginForm = () => {
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className={errors.password ? "input-error" : ""}
             />
+
+            {errors.password && <p className="error-message">{errors.password}</p>}
+             </div>
           </div>
-          {errorMessage && <p className="error">Error: {errorMessage}</p>}
+          <div className="input-inner-group">
           <input type="submit" value="Login" />
+          {errors.general && <p className="error-message">{errors.general}</p>}
+      </div>
         </form>
       </div>
     </div>

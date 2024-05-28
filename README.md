@@ -93,7 +93,7 @@ npm run start
 Para iniciar os testes:
 
 ```
-npm test
+npm run test
 ```
 
 # Extra
