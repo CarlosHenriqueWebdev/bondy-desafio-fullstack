@@ -29,10 +29,10 @@ Para Windows:
 npm run start
 ```
 
-Caso não esteja no Windows, utilize [ou troque o script de start no Package.json para outra coisa se necessário]:
+Caso não esteja no Windows, troque o script de start no package.json para o original ou outra coisa se necessário:
 
 ```
-NODE_ENV=local serverless offline --stage local
+ "start": "NODE_ENV=local serverless offline --stage local",
 ```
 
 Em outra janela do terminal, inicie o frontend:
