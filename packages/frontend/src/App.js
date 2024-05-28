@@ -34,18 +34,19 @@ const LoginForm = () => {
 
   // useEffect to redirect if user is already logged in
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    // I am using localStorage on JsonWebToken for simplicity. The project is too simple to take better security measures, but can definitely be done
+    const token = localStorage.getItem("token");
     if (token) {
       // Delay the redirect
       setTimeout(() => {
-        navigate('/welcome');
+        navigate("/welcome");
       }, 777);
     }
   }, [navigate]);
 
   const [login] = useMutation(LOGIN_MUTATION, {
     onError: (error) => {
-      const errorMessages = error.message.split(', ');
+      const errorMessages = error.message.split(", ");
       const newErrors = { email: "", password: "", general: "" };
 
       errorMessages.forEach((errorMessage) => {
@@ -73,8 +74,9 @@ const LoginForm = () => {
     try {
       const { data } = await login({ variables: { email, password } });
 
-      localStorage.setItem('token', data.login.token);
-      navigate('/welcome');
+      // I am using localStorage on JsonWebToken for simplicity. The project is too simple to take better security measures, but can definitely be done
+      localStorage.setItem("token", data.login.token);
+      navigate("/welcome");
     } catch (error) {
       console.error("Login error:", error.message);
     }
@@ -84,45 +86,48 @@ const LoginForm = () => {
     <div id="login-form">
       <div className="fieldset">
         <div className="cool-heading">
-          <img src="logo.png" alt="Logo" />
+          <img src="logo.png" alt="Bondy Logo" />
         </div>
         <form onSubmit={handleSubmit}>
           <div className={`row ${errors.email ? "error" : ""}`}>
             <label htmlFor="email">E-mail</label>
             <div className="input-inner-group">
-
-            <input
-              id="email"
-              type="email"
-              placeholder="E-mail"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={errors.email ? "input-error" : ""}
-            />
-            {errors.email && <p className="error-message">{errors.email}</p>}
-          </div>
+              <input
+                id="email"
+                type="email"
+                placeholder="E-mail"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={errors.email ? "input-error" : ""}
+              />
+              {errors.email && <p className="error-message">{errors.email}</p>}
+            </div>
           </div>
           <div className={`row ${errors.password ? "error" : ""}`}>
             <label htmlFor="password">Password</label>
-              <div className="input-inner-group">
-            <input
-              id="password"
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className={errors.password ? "input-error" : ""}
-            />
+            <div className="input-inner-group">
+              <input
+                id="password"
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={errors.password ? "input-error" : ""}
+              />
 
-            {errors.password && <p className="error-message">{errors.password}</p>}
-             </div>
+              {errors.password && (
+                <p className="error-message">{errors.password}</p>
+              )}
+            </div>
           </div>
           <div className="input-inner-group">
-          <input type="submit" value="Login" />
-          {errors.general && <p className="error-message">{errors.general}</p>}
-      </div>
+            <input type="submit" value="Login" />
+            {errors.general && (
+              <p className="error-message">{errors.general}</p>
+            )}
+          </div>
         </form>
       </div>
     </div>

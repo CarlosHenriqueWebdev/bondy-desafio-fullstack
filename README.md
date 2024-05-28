@@ -25,20 +25,28 @@ Inicie o servidor backend **primeiro**:
 
 Para Windows:
 
-```
-npm run start
-```
+Package.json Script de inicialização windows "start-windows": "set NODE_ENV=local&& serverless offline --stage local",
 
-Caso não esteja no Windows, troque o script de start no package.json para o original ou outra coisa se necessário:
+Côdigo:
 
 ```
- "start": "NODE_ENV=local serverless offline --stage local",
+npm run start-windows
+```
+
+Caso não esteja no Windows, troque o script de start no package.json para outra coisa se necessário:
+
+Package.json Script de inicialização "start": "NODE_ENV=local serverless offline --stage local"
+
+Côdigo atual se não estiver usando windows:
+
+```
+ npm run start
 ```
 
 Em outra janela do terminal, inicie o frontend:
 
 ```
-cd frontend
+cd ./packages/frontend
 npm start
 ```
 

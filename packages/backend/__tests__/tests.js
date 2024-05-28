@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 const axios = require('axios')
 
 describe('Apollo Server', () => {

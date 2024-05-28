@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import mongoose from 'mongoose'
 
 // Define the Token Blacklist model
