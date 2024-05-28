@@ -3,5 +3,5 @@ node_modules/
 coverage
 .serverless/
 .esbuild/
-./packages/backend/src/graphql/backup.ts
-./packages/backend/src/graphql/mainTest.ts
+packages/backend/src/graphql/backup.ts
+packages/backend/src/graphql/mainTest.ts
