@@ -3,3 +3,6 @@ node_modules/
 coverage
 .serverless/
 .esbuild/
+.env.local
+./packages/backend/graphql/backup.ts
+./packages/backend/graphql/mainTest.ts

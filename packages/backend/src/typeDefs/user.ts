@@ -5,6 +5,5 @@ export default gql`
     name: String
     email: String
     company: String
-    password: String
   }
 `

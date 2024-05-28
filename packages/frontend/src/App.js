@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ApolloProvider, useMutation, gql } from "@apollo/client";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { useNavigate, Route, Routes } from "react-router-dom";
@@ -15,10 +15,12 @@ const client = new ApolloClient({
 const LOGIN_MUTATION = gql`
   mutation Login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
-      name
-      email
-      company
-      password
+      token
+      user {
+        name
+        email
+        company
+      }
     }
   }
 `;
@@ -29,6 +31,17 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+
+  // useEffect to redirect if user is already logged in
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // Delay the redirect
+      setTimeout(() => {
+        navigate('/welcome');
+      }, 777);
+    }
+  }, [navigate]);
 
   const [login] = useMutation(LOGIN_MUTATION, {
     onError: (error) => {
@@ -41,6 +54,7 @@ const LoginForm = () => {
     try {
       const { data } = await login({ variables: { email, password } });
       console.log("Login successful!", data.login);
+      localStorage.setItem('token', data.login.token);
       navigate('/welcome');
     } catch (error) {
       console.error("Login error:", error.message);
@@ -50,7 +64,7 @@ const LoginForm = () => {
   return (
     <div id="login-form">
       <div className="fieldset">
-        <legend>Login Page</legend>
+        <legend className="cool-heading">Login Page</legend>
         <form onSubmit={handleSubmit}>
           <div className="row">
             <label htmlFor="email">E-mail</label>
@@ -59,7 +73,6 @@ const LoginForm = () => {
               type="email"
               placeholder="E-mail"
               name="email"
-              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -71,7 +84,6 @@ const LoginForm = () => {
               type="password"
               placeholder="Password"
               name="password"
-              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
