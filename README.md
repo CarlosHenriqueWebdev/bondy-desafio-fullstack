@@ -6,9 +6,18 @@
 
 ### Passos para Executar o Projeto
 
-Clone ou baixe repositório para sua máquina local
+Clone o projeto:
+
+```
+cd sua-pasta
+git clone https://github.com/CarlosHenriqueWebdev/bondy-desafio-fullstack.git
+```
 
 Navegue até o diretório do projeto
+
+```
+cd ./bondy-desafio-fullstack
+```
 
 Instale as dependências do frontend e do backend:
 
